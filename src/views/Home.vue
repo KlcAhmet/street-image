@@ -1,5 +1,5 @@
-<template>
-  <div class="home">testt</div>
+<template lang="pug">
+div(class="home") testttttt
 </template>
 
 <script>
