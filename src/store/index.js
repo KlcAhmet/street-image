@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import GeoNames from '@/store/modules/geo-names'
+import Search from '@/store/modules/search'
 
 export default createStore({
   state: {
@@ -11,6 +11,6 @@ export default createStore({
   },
   actions: {},
   modules: {
-    GeoNames,
+    Search,
   },
 })
