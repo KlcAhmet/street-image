@@ -1,5 +1,5 @@
 <template lang="pug">
-div(class="home") testttttt
+div.text-pink-400 testttttt
 </template>
 
 <script>
