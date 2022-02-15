@@ -21,11 +21,13 @@ export default {
       /**
        * q: location name
        * username: api access key
+       * maxRows:the maximal number of rows in the document returned by the service.
+       *         Default is 100, the maximal allowed value is 1000.
        * more info: https://www.geonames.org/export/geonames-search.html
        * @type {string}
        */
       const locations = await this.$axios.get(
-        `searchJSON?q=${searchLocations}&username=${this.$env.VUE_APP_GEO_NAMES_USER}`,
+        `searchJSON?q=${searchLocations}&maxRows=1000&username=${this.$env.VUE_APP_GEO_NAMES_USER}`,
         {
           baseURL: 'http://api.geonames.org',
           timeout: 5000,
@@ -40,7 +42,7 @@ export default {
           population: item.population,
           lat: item.lat,
           lng: item.lng,
-          countryCode: item.countryCode.toLowerCase(),
+          //countryCode: item.countryCode.toLowerCase() ?? '',
         }
       })
 
@@ -55,9 +57,14 @@ export default {
         '&image_type=photo&order=popular&per_page=3'
 
       const filteredImages = await Promise.all(
-        filteredLocations.map(async (item) => {
+        filteredLocations.map(async (item, index) => {
+          if (index > 100)
+            return {
+              ...item,
+              imageUrl: null,
+            }
           const res = await this.$axios.get(
-            `?key=${this.$env.VUE_APP_PIXBAY_API_KEY}&q=${item.name}&lang=${item.countryCode}${pixbayFilterParameters}`,
+            `?key=${this.$env.VUE_APP_PIXBAY_API_KEY}&q=${item.name}${pixbayFilterParameters}`,
             {
               baseURL: 'https://pixabay.com/api',
               timeout: 5000,
@@ -98,13 +105,20 @@ export default {
           }
         })
       )*/
-      const filteredWeather = filteredImages.map((item) => {
+      // eslint-disable-next-line no-unreachable
+      const filteredWeather = filteredImages.map((item, index) => {
+        if (index > 100)
+          return {
+            ...item,
+            temperature: '22',
+          }
         return {
           ...item,
           temperature: '22',
         }
       })
 
+      // eslint-disable-next-line no-unreachable
       commit('SET_SEARCH_RESULTS', filteredWeather)
       commit('SET_SEARCH_LOADING')
     },
