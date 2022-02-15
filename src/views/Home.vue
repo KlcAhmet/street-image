@@ -1,17 +1,22 @@
 <template lang="pug">
-div.text-pink-400 testttttt
+.container(class="sm:px-2 md:px-20")
+  .columns-1
+    Header
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+//import { mapActions } from 'vuex'
+import Header from '@/components/Header'
 export default {
   name: 'Home',
-  components: {},
+  components: {
+    Header,
+  },
   methods: {
-    ...mapActions('Search', ['searchLocation']),
+    //...mapActions('Search', ['searchLocation']),
   },
   created() {
-    this.searchLocation('istanbul')
+    //this.searchLocation('istanbul')
   },
 }
 </script>
