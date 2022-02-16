@@ -7,7 +7,6 @@
 </template>
 
 <script>
-//import { mapActions } from 'vuex'
 import Header from '@/components/Header'
 import ImageList from '@/components/image list/ImageList'
 export default {
@@ -15,12 +14,6 @@ export default {
   components: {
     Header,
     ImageList,
-  },
-  methods: {
-    //...mapActions('Search', ['searchLocation']),
-  },
-  created() {
-    //this.searchLocation('istanbul')
   },
 }
 </script>

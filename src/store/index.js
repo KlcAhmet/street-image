@@ -3,7 +3,7 @@ import Search from '@/store/modules/search'
 
 export default createStore({
   state: {
-    loading: true,
+    loading: false,
     selectedImages: null,
   },
   mutations: {

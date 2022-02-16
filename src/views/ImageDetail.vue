@@ -21,7 +21,7 @@
         label Population
         label.font-light {{selectedImages.population}}
         label Temperature
-        label.font-light {{selectedImages.temperature}}
+        label.font-light {{selectedImages.temperature}} &#8451;
         label Lat
         label.font-light {{selectedImages.lat}}
         label Lng
