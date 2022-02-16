@@ -9,6 +9,9 @@ module.exports = {
         500: '#f97316',
         600: '#ea580c',
       },
+      indigo: {
+        800: '#3730a3',
+      },
     },
   },
   plugins: [],
