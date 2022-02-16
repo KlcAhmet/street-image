@@ -1,7 +1,9 @@
 <template lang="pug">
 .imageDetail.h-screen
-  img.absolute.top-12.right-12.z-0(:src="HeaderLogo")
-  button.imageDetail-backbtn.bg-white.absolute.top-12.left-12.p-3.rounded-full.z-10(
+  img.imageDetail-header.absolute.top-12.right-12.z-0(
+    :src="HeaderLogo"
+    )
+  button.imageDetail-backbtn.bg-white.absolute.top-10.left-12.p-3.rounded-full.z-10(
     type="button"
     @click="backPage()"
     )
@@ -12,7 +14,7 @@
     )
   .flex.justify-center.pt-10
     div.rounded-xl.shadow-xl.p-8(
-      class="w-3/12"
+      class="w-9/12 sm:w-5/12 md:w-4/12 lg:w-3/12"
       )
       .imageDetail-text-color.pb-4.text-lg.font-medium {{selectedImages.name}}
       .grid.grid-cols-2.grid-rows-4.imageDetail-text-color
@@ -59,4 +61,11 @@ export default {
       background-color: #701a75
   &-text-color
     color: #1A2D3F
+@media screen and (max-width: 600px)
+  .imageDetail-header
+    top: 2em
+    right: 2em
+  .imageDetail-backbtn
+    top: 1.7em
+    left: 2em
 </style>
