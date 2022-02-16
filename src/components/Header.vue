@@ -9,7 +9,7 @@
         type="text"
         placeholder="Location"
         )
-      button.header-button.shadow-lg.shadow-black.rounded-r-md.px-8.py-3(
+      button.header-button.text-white.shadow-lg.shadow-black.rounded-r-md.px-8.py-3(
         type="button"
         )
        | Search
