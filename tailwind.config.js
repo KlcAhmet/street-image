@@ -3,6 +3,13 @@ module.exports = {
   content: [],
   theme: {
     extend: {},
+    colors: {
+      transparent: 'transparent',
+      orange: {
+        500: '#f97316',
+        600: '#ea580c',
+      },
+    },
   },
   plugins: [],
 }
