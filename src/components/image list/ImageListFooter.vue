@@ -27,6 +27,7 @@ export default {
     setPageNumber(value) {
       if (value) this.INCREASE_PAGE_NUMBER()
       else this.DECREASE_PAGE_NUMBER()
+      window.scrollTo({ top: 0 })
     },
   },
   created() {},
