@@ -1,6 +1,8 @@
 <template lang="pug">
 .columns-1
-  .grid.grid-cols-4.gap-x-5.gap-y-3
+  .grid.gap-x-5.gap-y-3(
+    class="sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-4 md:p-0"
+    )
     ImageCard(
       v-for="(item, index) in testdata"
       :key="index"
@@ -24,6 +26,8 @@ export default {
     async imageDetail(item) {
       const obj = JSON.parse(JSON.stringify(item))
       this.SET_SELECTED_IMAGES(obj)
+      // todo loading screen store yapılacak
+      await this.$router.push({ name: 'ImageDetail' })
     },
   },
   data() {

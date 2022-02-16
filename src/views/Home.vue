@@ -1,5 +1,5 @@
 <template lang="pug">
-.container(class="sm:px-2 md:px-20")
+.div(class="sm:px-2 md:px-20")
   .columns-1
     Header
   .columns-1

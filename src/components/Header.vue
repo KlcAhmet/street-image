@@ -3,7 +3,7 @@
   .flex.flex-wrap(
     class="flex-col-reverse justify-center md:justify-end md:flex-row"
     )
-    .flex.flex-row.justify-center(class="w-11/12 md:w-8/12 lg:w-6/12 ")
+    .flex.flex-row.justify-center(class="w-11/12 md:w-8/12 lg:w-6/12 mx-auto sm:mx-0")
       input.shadow-lg.shadow-black.rounded-l-md.px-5(
         class="w-8/12"
         type="text"
