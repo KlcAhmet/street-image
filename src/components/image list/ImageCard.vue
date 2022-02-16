@@ -1,12 +1,16 @@
 <template lang="pug">
 .w-full
   .flex.flex-col
-    img(src="https://www.klasiksanatlar.com/img/sayfalar/b/1_1598452306_resim.png")
-    .text-center text
+    img(:src="imageSrc")
+    .text-center {{ name }}
 </template>
 
 <script>
 export default {
+  props: {
+    name: String,
+    imageSrc: String,
+  },
   name: 'ImageCard',
 }
 </script>
