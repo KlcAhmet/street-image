@@ -3,9 +3,10 @@
 ## Proje Kurulumu
 
 - ```   npm install   ```
-- .env dosyasına api keylerini yazın örnek .env.dist dosyası `VUE_APP_GEO_NAMES_USER=  `
-  `VUE_APP_PIXBAY_API_KEY=  `
-  `VUE_APP_OPEN_WEATHER_API_KEY=`
+- .env dosyasına api keylerini yazın örnek .env.dist dosyası 
+  - `VUE_APP_GEO_NAMES_USER=  `
+  -  `VUE_APP_PIXBAY_API_KEY=  `
+  -  `VUE_APP_OPEN_WEATHER_API_KEY=`
 - Apiler
     - [Geonames](https://www.geonames.org/export/web-services.html)
     - [Pixabay](https://pixabay.com/api/docs/)
