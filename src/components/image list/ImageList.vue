@@ -6,16 +6,25 @@
       :key="index"
       :name="item.name"
       :imageSrc="item.imageUrl ?? defaultImageSrc"
+      @click="imageDetail(item)"
       )
 </template>
 
 <script>
 import ImageCard from '@/components/image list/ImageCard'
 import defaultImageSrc from '@/assets/images/default-image.png'
+import { mapMutations } from 'vuex'
 export default {
   name: 'ImageList',
   components: {
     ImageCard,
+  },
+  methods: {
+    ...mapMutations(['SET_SELECTED_IMAGES']),
+    async imageDetail(item) {
+      const obj = JSON.parse(JSON.stringify(item))
+      this.SET_SELECTED_IMAGES(obj)
+    },
   },
   data() {
     return {

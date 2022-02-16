@@ -1,8 +1,11 @@
 <template lang="pug">
 .w-full
   .flex.flex-col
-    img(:src="imageSrc")
-    .text-center {{ name }}
+    img(
+      class="w-full h-48"
+      :src="imageSrc"
+      )
+    .text-center.pt-10 {{ name }}
 </template>
 
 <script>
