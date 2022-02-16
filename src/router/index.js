@@ -12,6 +12,11 @@ const routes = [
     name: 'ImageDetail',
     component: () => import('@/views/ImageDetail.vue'),
   },
+  {
+    path: '/image-search',
+    name: 'ImageSearch',
+    component: () => import('@/views/ImageSearch'),
+  },
 ]
 
 const router = createRouter({

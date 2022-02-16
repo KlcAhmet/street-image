@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import DefaultImage from '@/assets/images/default-image.png'
 import HeaderLogo from '@/assets/svg/header-logo.svg'
 import ArrowBack from '@/assets/svg/arrow-back.svg'
@@ -47,8 +47,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['routerGo']),
     backPage() {
-      this.$router.go(-1)
+      this.routerGo(-1)
     },
   },
 }

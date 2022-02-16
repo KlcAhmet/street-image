@@ -7,6 +7,7 @@ import '@/assets/index.sass'
 
 store.$axios = plugins.axios
 store.$env = process.env
+store.$router = router
 
 const app = createApp(App)
 

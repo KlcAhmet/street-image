@@ -21,7 +21,7 @@
 import ImageCard from '@/components/image list/ImageCard'
 import ImageListFooter from '@/components/image list/ImageListFooter'
 import defaultImageSrc from '@/assets/images/default-image.png'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters, mapActions } from 'vuex'
 export default {
   name: 'ImageList',
   components: {
@@ -33,11 +33,11 @@ export default {
   },
   methods: {
     ...mapMutations(['SET_SELECTED_IMAGES']),
+    ...mapActions(['routerPush']),
     async imageDetail(item) {
       const obj = JSON.parse(JSON.stringify(item))
       this.SET_SELECTED_IMAGES(obj)
-      // todo loading screen store yapılacak
-      await this.$router.push({ name: 'ImageDetail' })
+      this.routerPush('ImageDetail')
     },
   },
   data() {

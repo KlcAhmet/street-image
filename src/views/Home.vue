@@ -1,26 +1,17 @@
 <template lang="pug">
-.div(class="sm:px-2 md:px-20")
-  .columns-1
-    Header
-  .columns-1
-    ImageList
+div
 </template>
 
 <script>
-//import { mapActions } from 'vuex'
-import Header from '@/components/Header'
-import ImageList from '@/components/image list/ImageList'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Home',
-  components: {
-    Header,
-    ImageList,
-  },
   methods: {
-    //...mapActions('Search', ['searchLocation']),
+    ...mapActions(['routerPush']),
   },
   created() {
-    //this.searchLocation('istanbul')
+    this.routerPush('ImageSearch')
   },
 }
 </script>
