@@ -193,7 +193,6 @@ export default {
           ...filteredImageData,
           temperature: weatherData?.data?.main?.feels_like,
         }
-        console.log(22);
         commit('SET_ONERESULT', filteredWeatherData)
       } catch (e) {
         console.log(e)
