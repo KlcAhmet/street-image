@@ -17,6 +17,11 @@ const routes = [
     name: 'ImageSearch',
     component: () => import('@/views/ImageSearch'),
   },
+  {
+    path: '/sehir/:isim',
+    name: 'sehir',
+    component: () => import('@/views/Slug'),
+  },
 ]
 
 const router = createRouter({

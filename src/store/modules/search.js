@@ -25,6 +25,7 @@ export default {
     searchResults: [],
     filteredResults: [],
     info: 'Arama bekleniyor',
+    oneResult: null,
   }),
 
   getters: {
@@ -42,6 +43,7 @@ export default {
     DECREASE_PAGE_NUMBER: (state) => (state.pageNumber = state.pageNumber - 1),
     SET_INFO: (state, payload) => (state.info = payload),
     SET_FILTERED_RESULTS: (state, payload) => (state.filteredResults = payload),
+    SET_ONERESULT: (state, payload) => (state.oneResult = payload),
   },
 
   actions: {
@@ -135,7 +137,70 @@ export default {
         commit('SET_SEARCH_LOADING')
       }
     },
-    // eslint-disable-next-line no-unused-vars
+    async searchOneLocation({ commit }, searchLocations) {
+      commit('SET_SEARCH_LOADING')
+      commit('SET_ONERESULT', null)
+      try {
+        /**
+         * q: location name
+         * username: api access key
+         * maxRows:the maximal number of rows in the document returned by the service.
+         *         Default is 100, the maximal allowed value is 1000.
+         * more info: https://www.geonames.org/export/geonames-search.html
+         * @type {string}
+         */
+        const locations = await this.$axios.get(
+          `searchJSON?q=${searchLocations}&maxRows=1&username=${this.$env.VUE_APP_GEO_NAMES_USER}`,
+          {
+            baseURL: 'http://api.geonames.org',
+            timeout: 5000,
+          }
+        )
+
+        if (!locations.data.geonames.length)
+          commit('SET_INFO', 'Lokasyon bulunamadı') // todo ana sayfaya
+
+        const geonamesData = locations.data.geonames[0]
+        const filteredLocation = {
+          name: geonamesData.toponymName,
+          population: geonamesData.population,
+          lat: geonamesData.lat,
+          lng: geonamesData.lng,
+        }
+
+        const imageData = await this.$axios.get(
+          `?key=${this.$env.VUE_APP_PIXBAY_API_KEY}&q=${filteredLocation.name}${pixbayFilterParameters}`,
+          {
+            baseURL: 'https://pixabay.com/api',
+            timeout: 5000,
+          }
+        )
+
+        const filteredImageData = {
+          ...filteredLocation,
+          imageUrl: imageData?.data?.hits?.shift()?.largeImageURL,
+        }
+
+        const weatherData = await this.$axios.get(
+          `weather?lat=${filteredImageData.lat}&lon=${filteredImageData.lng}${openWeatherFilterParameters}${this.$env.VUE_APP_OPEN_WEATHER_API_KEY}`,
+          {
+            baseURL: 'https://api.openweathermap.org/data/2.5',
+            timeout: 5000,
+          }
+        )
+
+        const filteredWeatherData = {
+          ...filteredImageData,
+          temperature: weatherData?.data?.main?.feels_like,
+        }
+
+        commit('SET_ONERESULT', filteredWeatherData)
+      } catch (e) {
+        console.log(e)
+      } finally {
+        commit('SET_SEARCH_LOADING')
+      }
+    },
     async nextSearchLocation({ state, commit }) {
       try {
         commit('SET_SEARCH_LOADING')
