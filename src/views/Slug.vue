@@ -47,6 +47,17 @@ export default {
   },
   methods: {
     ...mapActions('Search', ['searchOneLocation']),
+    findLocation() {
+      const routerPath = this.$router.currentRoute._value.params.isim
+      this.searchOneLocation(routerPath)
+    },
+  },
+  watch: {
+    $route(to, from) {
+      if (to !== from) {
+        this.findLocation()
+      }
+    },
   },
   data() {
     return {
@@ -56,8 +67,7 @@ export default {
     }
   },
   created() {
-    const routerPath = this.$router.currentRoute._value.params.isim
-    this.searchOneLocation(routerPath)
+    this.findLocation()
   },
 }
 </script>
